@@ -214,3 +214,54 @@ def print_graph(roll_sums):
     for roll_sum in range(2, 16): 
         stars = '*' * sum_frequency[roll_sum]  
         print(roll_sum, ":", stars)  
+
+
+# Output - Display the game's statistics to the user when they finish the five rounds.
+def display_stats(round_points_list):
+    print()
+    print("-----Game Stats--------")
+    round_number = 1  
+    for points in round_points_list:
+        print("Round: ", round_number, "|", points, "points")
+        round_number += 1 
+    print()
+
+# Define main function, which puts the game together by calling each of the other functions.
+def main():
+    greeting()
+    account_balance = 0 
+    roll_sums = []  
+    round_points_list = []
+
+    for round_number in range(1, 6): 
+        round_points, account_balance = active_round(account_balance, round_number, roll_sums)
+        round_points_list.append(round_points)
+
+        # Output - Display Round points and account balance to user 
+        print("Round points: ", round_points)
+        print("Account Balance: ", account_balance)
+        print()
+    # Display total account balance
+    print("Game Over! Your final account balance is: ", account_balance)
+
+    display_stats(round_points_list)
+    time.sleep(1)
+    account_balance = pick_prizes(account_balance)
+    time.sleep(1)
+    print_graph(roll_sums)
+    print()    
+    print("Goodbye, thank you for playing the multiplier game!")
+
+
+## Main Program ## - Call main function to run game.
+# Call Tkinter_greet() to greet the user. (at first when run program)
+
+tkinter_greet()
+main()
+
+
+
+
+
+
+
