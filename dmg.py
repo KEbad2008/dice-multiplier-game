@@ -1,5 +1,5 @@
 # Name: @ebaduk117 on hackclub
-# Date: 2026-06-05
+# Date: 2026-06-05 to 07
 # File: dmg.py (dicemultipliergame)
 # Desc: Multiplier Game | a dice game in python
 
@@ -139,3 +139,78 @@ def apply_punishments(die1, die2, round_points, account_balance):
     return account_balance, round_points
 
 
+# Define display_prizes(), which prints the prizes the user can buy, and how much of that prize (upon function being called).
+def display_prizes(points):
+    print()
+    print("---------Available Prizes-----")
+    print("[1] Candy Bar - 10 points | Max: ", points // 10)
+    print("[2] Juice Box - 25 points | Max: ", points // 25)
+    print("[3] Pencil Crayon Pack - 35 points | Max: ", points // 35)
+    print("[4] Phone Case - 50 points | Max: ", points // 50)
+    print("[5] Earplugs - 75 points | Max: ", points // 75)
+    print("[6] Jumbo Size Stuff Toy - 200 points | Max: ", points // 200)
+    print("Your current amount of points: ", points)
+    print()
+    time.sleep(0.5)
+# Define pick_prizes(), which lets user choose prize, and deducts points based on prize bought.
+def pick_prizes(points):
+    stop_shopping = 0
+    out_of_money = 1
+    while points >= 10 and stop_shopping != 1:
+        display_prizes(points)
+        print("Which Prize Would You Like To Buy?")
+        prize_choice = input("Enter The Prize Number, or 'done' to stop!: ")
+
+        while prize_choice not in ['1', '2', '3', '4', '5', '6', 'done', 'Done', 'DONE', 'quit', '0']:
+            print("Please enter an option from the menu!")
+            prize_choice = input("Which Prize Would You Like To Buy? Enter The Prize Number, or 'done' to stop!: ")
+
+        if prize_choice == "1" and points >= 10:
+            points -= 10
+            print("You Bought A Candy Bar!")
+        elif prize_choice == "2" and points >= 25:
+            points -= 25
+            print("You Bought A Juice Box!")
+        elif prize_choice == "3" and points >= 35:
+            points -= 35
+            print("You Bought A Pencil Crayon Pack!")
+        elif prize_choice == "4" and points >= 50:
+            points -= 50
+            print("You bought a Phone Case!")
+        elif prize_choice == "5" and points >= 75:
+            points -= 75
+            print("You bought Earplugs!")
+        elif prize_choice == "6" and points >= 200:
+            points -= 200
+            print("You bought a Jumbo Stuff Toy!")
+        elif prize_choice == "done" or prize_choice == "Done" or prize_choice == "DONE" or prize_choice == "quit" or prize_choice == "0":
+            print("Thank you for checking out the prizes!")
+            stop_shopping = 1
+        else:
+            print("Sorry, but you can't afford that prize, Thank You!")
+            print()
+
+        if points < 10:
+            print()
+            print("You no longer have enough points to purchase prizes.")
+            out_of_money = 1
+    if points < 10 and out_of_money == 0:
+        print("You dont have enough points to shop!")
+        
+    print("Your remaining points: ", points)
+
+    return points
+
+# Output - Print Graph and statistics to the user.
+def print_graph(roll_sums):
+    sum_frequency = [0] * 16 
+   
+    for roll_sum in roll_sums:
+        if 2 <= roll_sum <= 15:
+            sum_frequency[roll_sum] += 1
+    print()
+    print("-----Frequency of Roll Sums-------")
+    
+    for roll_sum in range(2, 16): 
+        stars = '*' * sum_frequency[roll_sum]  
+        print(roll_sum, ":", stars)  
