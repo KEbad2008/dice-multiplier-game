@@ -36,6 +36,6 @@ the game includes both rewards and punishments that can make or break your earni
  - tkinter (typically included with most python, otherwise install)
 
  ## video demonstration
- 
+https://github.com/KEbad2008/dice-multiplier-game/blob/main/Recording%202026-06-19%20003822%20(1).mp4 
 
  
